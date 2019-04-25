@@ -408,12 +408,8 @@ namespace Abp.Zero.EntityFramework
             #region Setting.IX_TenantId_Name
 
             modelBuilder.Entity<Setting>()
-                .Property(e => e.TenantId)
-                .CreateIndex("IX_TenantId_Name", 1);
-
-            modelBuilder.Entity<Setting>()
-                .Property(e => e.Name)
-                .CreateIndex("IX_TenantId_Name", 2);
+                .HasIndex(e => new { e.TenantId, e.Name, e.UserId })
+                .IsUnique();
 
             #endregion
 
